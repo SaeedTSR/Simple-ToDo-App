@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        font-family: arial, sans-serif;
+         width: 100%;
+      }
+
+      td, th {
+      border: 1px solid #dddddd;
+      padding: 8px;
+      text-align: left;
+      }
+
+      tr:nth-child(even) {
+      background-color: #dddddd;
+      }
+</style>
+</head>
+<body>
+    <h1>ToDo</h1>
+    <h4>Welcome {{username}}</h4> <h5><a href="{% url 'accounts:logout' %}">Log-out</a></h5>
+    <a href="{% url 'todo:create' %}">Create</a> a new task!
+    <table>
+      <hr>
+    <tr>
+      <th>Task</th>
+      <th>Status</th>
+      <th>Created date</th>
+      <th>Due date</th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+      <td><a href="{% url 'todo:edit' pk=task.id %}">{{task.name}}</a></td>
+      <td>{{task.status}}</td>
+      <td>{{task.created_date}}</td>
+      <td>{{task.due_date}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>
