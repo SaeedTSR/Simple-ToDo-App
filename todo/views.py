@@ -22,7 +22,7 @@ class TodoList(LoginRequiredMixin, ListView):
 
 class TodoCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['name', 'status', 'due_date']
+    fields = ['name', 'due_date']
     success_url = reverse_lazy('todo:list')
     template_name = 'todo/task_create.html'
 
