@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+import datetime
+
+time = datetime.datetime.now(datetime.timezone.utc).astimezone().now()
 
 user = get_user_model()
 
@@ -12,7 +15,7 @@ class Task(models.Model):
     ]
     status = models.CharField(
         max_length=7, choices=STATUS_CHOICES, default='Not yet')
-    created_date = models.DateTimeField(auto_now_add=True)
+    created_date = models.DateTimeField(default=time)
     due_date = models.DateField(null=True, help_text='yyyy-mm-dd')
 
     def __str__(self):
